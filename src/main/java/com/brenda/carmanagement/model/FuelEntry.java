@@ -5,6 +5,10 @@ public class FuelEntry {
     private double liters;
     private double price;
     private int odometer;
+
+
+     // getters & setters
+      
     public double getLiters() {
         return liters;
     }
@@ -24,7 +28,7 @@ public class FuelEntry {
         this.odometer = odometer;
     }
 
-    // getters & setters
+   
 
     
 }
