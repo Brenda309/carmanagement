@@ -2,6 +2,8 @@ package com.brenda.carmanagement.servlet;
 
 import java.io.IOException;
 
+import org.springframework.web.server.ResponseStatusException;
+
 import com.brenda.carmanagement.dto.FuelStatsResponse;
 import com.brenda.carmanagement.service.CarService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -41,9 +43,10 @@ public class FuelStatsServlet extends HttpServlet {
 
             objectMapper.writeValue(resp.getWriter(), stats);
 
-        } catch (NumberFormatException e) {
-            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            resp.getWriter().write("Invalid carId format");
+        } catch (ResponseStatusException e) {
+    resp.setStatus(e.getStatusCode().value());
+    resp.getWriter().write(e.getReason());
+
         }
     }
 }
